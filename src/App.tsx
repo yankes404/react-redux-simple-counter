@@ -1,22 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
-import { FormEvent, useState } from "react"
-import { decrement, increment } from "./features/counter/counterReducer";
 
-import { RootState } from "./types/RootState";
+import { decrement, increment } from "./features/counter/counterReducer";
 import { formatNumberToUs } from "./function/format-number-to-us";
+
+import { FormEvent } from "react"
+import { RootState } from "./types/RootState";
 
 export default function App () {
     const count = useSelector((state: RootState) => state.counter.value);
     const dispatch = useDispatch();
 
-    const [inputValue, setInputValue] = useState(0);
+    const handleIncrease = () => dispatch(increment({}));
+    const handleDecrease = () => dispatch(decrement());
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        const formData = new FormData(e.currentTarget);
+        const values = Object.fromEntries(formData.entries());
+        const value = Number(values.input);
 
-        dispatch(increment({ value: inputValue }));
-        alert(`Increased by ${formatNumberToUs(inputValue)}!`);
-        setInputValue(0);
+        if (!value || isNaN(value)) {
+            return alert("This value is not a number!");
+        }
+
+        dispatch(increment({ value: value }));
+        alert(`Increased by ${formatNumberToUs(value)}!`);
+
+        e.currentTarget.reset();
     }
 
     return (
@@ -30,13 +41,13 @@ export default function App () {
             <div className="buttons">
                 <button
                     className="outline"
-                    onClick={() => dispatch(increment({}))}
+                    onClick={handleIncrease}
                 >
                     Increase
                 </button>
                 <button
                 className="outline"
-                    onClick={() => dispatch(decrement())}
+                    onClick={handleDecrease}
                 >
                     Decrease
                 </button>
@@ -49,9 +60,9 @@ export default function App () {
                     <input
                         type="number"
                         id="input"
+                        defaultValue={0}
+                        name="input"
                         placeholder="Enter number..."
-                        value={inputValue}
-                        onChange={(e) => setInputValue(Number(e.target.value))}
                     />
                 </div>
                 <button>Submit</button>
