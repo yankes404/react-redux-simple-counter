@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "./features/counter/counterSlice";
+import { decrement, increment } from "./features/counter/counterReducer";
 
 interface RootState {
     counter: { value: number };
@@ -30,11 +30,13 @@ export default function App () {
             </div>
             <div className="buttons">
                 <button
+                    className="outline"
                     onClick={() => dispatch(increment({}))}
                 >
                     Increase
                 </button>
                 <button
+                className="outline"
                     onClick={() => dispatch(decrement())}
                 >
                     Decrease

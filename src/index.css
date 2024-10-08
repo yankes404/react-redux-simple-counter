@@ -9,14 +9,62 @@
 
 :root {
   --primary-color: rgb(21, 150, 248);
+  --background: rgb(18, 18, 22);
 }
 
 body {
-  background: rgb(18, 18, 22);
+  background: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  background: white;
+  color: black;
+  transition: .1s;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background: rgba(255,255,255,.9);
+}
+
+button.outline {
+  background: var(--background);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 8px;
+}
+
+button.outline:hover,
+button.outline:focus {
+  background: rgba(255,255,255,.1);
+}
+
+input {
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: none;
+  outline: none;
+  border: 1px solid rgba(255,255,255,.15);;
+}
+
+input:focus {
+  background: rgba(255,255,255,.05);
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .container {
@@ -46,6 +94,7 @@ h1 {
 
 form {
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
@@ -59,7 +108,25 @@ form button {
   width: 100px;
 }
 
-a {
+form label {
+  margin-bottom: 6px;
+}
+
+form button {
+  width: 100%;
+}
+
+footer,
+footer a {
+  font-weight: 500;
+  font-size: 12px;
+  color: rgb(115, 115, 140);
+  outline: none;
+  transition: .1s;
+}
+
+footer a:hover,
+footer a:focus {
   color: #fff;
 }
 
