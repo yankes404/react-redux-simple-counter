@@ -1,10 +1,8 @@
-import { FormEvent, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
+import { FormEvent, useState } from "react"
 import { decrement, increment } from "./features/counter/counterReducer";
 
-interface RootState {
-    counter: { value: number };
-}
+import { RootState } from "./types/RootState";
 
 export default function App () {
     const count = useSelector((state: RootState) => state.counter.value);
