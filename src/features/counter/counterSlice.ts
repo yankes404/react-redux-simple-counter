@@ -5,7 +5,7 @@ export const counterSlice = createSlice({
     initialState: { value: 0 },
     reducers: {
         increment: (state, action) => {
-            state.value += action.payload.value || 1;
+            state.value += isNaN(action.payload.value) ? 1 : action.payload.value;
         },
         decrement: (state) => {
             state.value -= 1;
