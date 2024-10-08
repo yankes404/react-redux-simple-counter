@@ -1,0 +1,1 @@
+export const formatNumberToUs = (number: number) => number.toLocaleString("en-US");

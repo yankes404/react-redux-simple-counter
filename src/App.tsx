@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react"
 import { decrement, increment } from "./features/counter/counterReducer";
 
 import { RootState } from "./types/RootState";
+import { formatNumberToUs } from "./function/format-number-to-us";
 
 export default function App () {
     const count = useSelector((state: RootState) => state.counter.value);
@@ -14,7 +15,7 @@ export default function App () {
         e.preventDefault();
 
         dispatch(increment({ value: inputValue }));
-        alert(`Increased by ${inputValue.toLocaleString("en-US")}!`);
+        alert(`Increased by ${formatNumberToUs(inputValue)}!`);
         setInputValue(0);
     }
 
@@ -24,7 +25,7 @@ export default function App () {
                 React Redux Counter
             </h1>
             <div className="value-box">
-                Current Value: <strong>{count.toLocaleString("en-US")}</strong>
+                Current Value: <strong>{formatNumberToUs(count)}</strong>
             </div>
             <div className="buttons">
                 <button
