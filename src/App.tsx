@@ -5,6 +5,7 @@ import { formatNumberToUs } from "./function/format-number-to-us";
 
 import { FormEvent } from "react"
 import { RootState } from "./types/RootState";
+import { isNumber } from "./function/is-number";
 
 export default function App () {
     const count = useSelector((state: RootState) => state.counter.value);
@@ -20,7 +21,7 @@ export default function App () {
         const values = Object.fromEntries(formData.entries());
         const value = Number(values.input);
 
-        if (!value || isNaN(value)) {
+        if (!value || !isNumber(value)) {
             return alert("This value is not a number!");
         }
 
